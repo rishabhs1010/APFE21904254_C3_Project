@@ -17,8 +17,6 @@ public class Restaurant {
         this.closingTime = closingTime;
     }
 
-
-
     public boolean isRestaurantOpen() {
         if(getCurrentTime().isAfter(closingTime) || getCurrentTime().isBefore(openingTime)) {
             return false;
@@ -39,6 +37,8 @@ public class Restaurant {
         }
         return null;
     }
+
+
 
     public void addToMenu(String name, int price) {
         Item newItem = new Item(name,price);
@@ -64,6 +64,16 @@ public class Restaurant {
 
     public String getName() {
         return name;
+    }
+
+    public int findTotalAmount(List<String> selectedMenuItems) {
+        int selectedItemsTotalAmount = 0;
+
+        for(int i = 0; i < selectedMenuItems.size(); i++) {
+            selectedItemsTotalAmount = selectedItemsTotalAmount + findItemByName(selectedMenuItems.get(i)).getPrice();
+        }
+
+        return selectedItemsTotalAmount;
     }
 
 }
